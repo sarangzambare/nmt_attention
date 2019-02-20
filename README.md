@@ -83,7 +83,10 @@ Check out references to know how these vectors are constructed.
 The architecture I used for this task consisted the following :
 
 1. 50 dimensional GloVe embeddings, 400,000 vocab size
-2. Input Shape (None,10000,50,50)
+2. Input Shape **(None,10000,50,50)**
+3. Output Shape **(None, 42606)**  (french vocab size = 42606)
+
+Summary of the network:
 
 ```
 model.summary()
