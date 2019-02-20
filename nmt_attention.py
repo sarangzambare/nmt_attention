@@ -270,7 +270,7 @@ model.fit([X[:10000], s0, c0], outputs, epochs=100, batch_size=500)
 # #preds[:,i,:].shape = (50,42606)
 #
 def preds_to_sen(preds):
-	assert(preds.shape = (50,42606))
+	assert(preds.shape == (50,42606))
 
 	outputs=[]
 	for w in preds:
