@@ -26,7 +26,7 @@ Humans do it much more efficiently by focusing only parts of sentences, to trans
 
 ## Attention models
 
-Attention models work by stacking up one more layer of RNNs (LSTM/GRU) over the input layer, the so called "attention layer". The number of times this RNN is unrolled is equal to the number of output units (in this case, the number of words in the translated text). Each unit in this layer is connected to all the units of the input layer, and receives a "context" variable denoted by ***C***.
+Attention models (due to [Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio](https://arxiv.org/abs/1409.0473)) work by stacking up one more layer of RNNs (LSTM/GRU) over the input layer, the so called "attention layer". The number of times this RNN is unrolled is equal to the number of output units (in this case, the number of words in the translated text). Each unit in this layer is connected to all the units of the input layer, and receives a "context" variable denoted by ***C***.
 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/nmt_attention/master/png/attention.png)
 
@@ -36,7 +36,7 @@ Context ***C*** receives input from all the nodes of the input layer, weighted b
 
 Where T<sub>x</sub> is the number of words in the input.
 
-Intuitively, the importance that the t-th output should give to the t'-th input should depend on the t'-th input and the activations of the nodes in the attention layer that came before the t-th output. 
+Intuitively, the importance that the t-th output should give to the t'-th input should depend on the t'-th input and the activations of the nodes in the attention layer that came before the t-th output.
 
 
 
@@ -44,6 +44,11 @@ Intuitively, the importance that the t-th output should give to the t'-th input 
 
 
 
+
+
+## References
+
+1. [Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio: Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/abs/1409.0473)
 
 <common architectures: encoder-decoder>
 
