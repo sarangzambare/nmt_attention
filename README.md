@@ -11,6 +11,17 @@ Most common neural network architectures used for machine translation are Recurr
 ![alt text](https://raw.githubusercontent.com/sarangzambare/nmt_attention/master/png/encoder_decoder.png)
 
 
+Encoder-decoder models consist of two parts, wherein the first part, i.e encoder, takes as input a sequence, which has to be translated and encodes the probability distribution of the input sequence, conditioned on the order of the sequence.
+
+The second part (decoder), outputs this probability conditioned on its previous outputs. For example, in the picture above, the first two outputs of the decoder are :
+
+![alt text](https://raw.githubusercontent.com/sarangzambare/nmt_attention/master/png/y1.png)
+
+![alt text](https://raw.githubusercontent.com/sarangzambare/nmt_attention/master/png/y2.png)
+
+
+
+
 <common architectures: encoder-decoder>
 
 <B-RNN working>
