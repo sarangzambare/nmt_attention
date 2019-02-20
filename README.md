@@ -34,6 +34,10 @@ Context ***C*** receives input from all the nodes of the input layer, weighted b
 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/nmt_attention/master/png/context.png)
 
+Where T<sub>x</sub> is the number of words in the input.
+
+Intuitively, the importance that the t-th output should give to the t'-th input should depend on the t'-th input and the activations of the nodes in the attention layer that came before the t-th output. 
+
 
 
 
