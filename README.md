@@ -52,7 +52,7 @@ With this architecture, the network learns the alpha matrix, and learns to focus
 
 ## Demonstration : English to French translation, with attention.
 
-To demonstrate neural machine translation, I worked with the task of language translation.
+To demonstrate neural machine translation, I worked with the task of language translation, using **Keras**
 
 I used the [briefings of the Europian Parliament](http://www.statmt.org/europarl/), which consists of more than **200,000** sentences in parallel text format with parallel texts for French and English. I preprocessed the text to :
 
@@ -78,6 +78,88 @@ But a program trained on GloVe word vectors will be able to answer it as **Woman
 Check out references to know how these vectors are constructed.
 
 
+## Architecture
+
+The architecture I used for this task consisted the following :
+
+1. 50 dimensional GloVe embeddings, 400,000 vocab size
+2. Input Shape (None,10000,50,50)
+
+```
+model.summary()
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_1 (InputLayer)            (None, 50, 50)       0                                            
+__________________________________________________________________________________________________
+s0 (InputLayer)                 (None, 256)          0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 50, 128)      58880       input_1[0][0]                    
+__________________________________________________________________________________________________
+repeat_vector_1 (RepeatVector)  (None, 50, 256)      0           s0[0][0]                         
+                                                                 lstm_1[0][0]                     
+                                                                 lstm_1[1][0]                     
+                                                                 .
+                                                                 .
+                                                                 .                  
+__________________________________________________________________________________________________
+concatenate_1 (Concatenate)     (None, 50, 384)      0           bidirectional_1[0][0]            
+                                                                 repeat_vector_1[0][0]            
+                                                                 bidirectional_1[0][0]            
+                                                                 repeat_vector_1[1][0]            
+                                                                 .
+                                                                 .
+                                                                 .           
+__________________________________________________________________________________________________
+dense_1 (Dense)                 (None, 50, 10)       3850        concatenate_1[0][0]              
+                                                                 concatenate_1[1][0]              
+                                                                 .
+                                                                 .
+                                                                 .            
+__________________________________________________________________________________________________
+dense_2 (Dense)                 (None, 50, 1)        11          dense_1[0][0]                    
+                                                                 dense_1[1][0]                    
+                                                                 .
+                                                                 .
+                                                                 .
+__________________________________________________________________________________________________
+attention_weights (Activation)  (None, 50, 1)        0           dense_2[0][0]                    
+                                                                 dense_2[1][0]                    
+                                                                 .
+                                                                 .
+                                                                 .
+__________________________________________________________________________________________________
+dot_1 (Dot)                     (None, 1, 128)       0           attention_weights[0][0]          
+                                                                 bidirectional_1[0][0]            
+                                                                 attention_weights[1][0]          
+                                                                 bidirectional_1[0][0]            
+                                                                 .
+                                                                 .
+                                                                 .
+__________________________________________________________________________________________________
+c0 (InputLayer)                 (None, 256)          0                                            
+__________________________________________________________________________________________________
+lstm_1 (LSTM)                   [(None, 256), (None, 394240      dot_1[0][0]                      
+                                                                 s0[0][0]                         
+                                                                 c0[0][0]                         
+                                                                 dot_1[1][0]                      
+                                                                 lstm_1[0][0]                     
+                                                                 lstm_1[0][2]                     
+                                                                 .
+                                                                 .
+                                                                 .                    
+__________________________________________________________________________________________________
+dense_3 (Dense)                 (None, 42606)        10949742    lstm_1[0][0]                     
+                                                                 lstm_1[1][0]                     
+                                                                 .
+                                                                 .
+                                                                 .               
+==================================================================================================
+Total params: 11,406,723
+Trainable params: 11,406,723
+Non-trainable params: 0
+__________________________________________________________________________________________________
+```
 
 
 
@@ -85,6 +167,7 @@ Check out references to know how these vectors are constructed.
 ## References
 
 1. [Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio: Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/abs/1409.0473)
+2. [Jeffrey Pennington, Richard Socher, and Christopher D. Manning: Global Vectors for word representations](https://nlp.stanford.edu/projects/glove/)
 
 <common architectures: encoder-decoder>
 
