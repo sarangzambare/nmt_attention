@@ -1,8 +1,8 @@
-# Attention Model for Neural Machine Translation: English to French
+# Attention Model for Neural Machine Translation
 
-## Under Construction
+## attempt at english to french translation using attention
 
-Neural Machine Translation (NMT) refers to the use of neural networks, to translate one form of information into other.
+Neural Machine Translation (NMT) is a technique used in natural language processing, and refers to the use of neural networks, to translate one form of information into other.
 
 Some common examples include language translation, speech to text and image captioning.
 
