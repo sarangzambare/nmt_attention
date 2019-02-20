@@ -36,7 +36,9 @@ Context ***C*** receives input from all the nodes of the input layer, weighted b
 
 Where T<sub>x</sub> is the number of words in the input.
 
-Intuitively, the importance that the t-th output should give to the t'-th input should depend on the t'-th input and the activations of the nodes in the attention layer that came before the t-th output.
+Intuitively, the importance that the t-th output should give to the t'-th input should depend on the t'-th input and the activations of the nodes in the attention layer that came before the t-th output. Also, for each output t, we define the alphas to be between 0 and 1. Since each output t should get attended, we constrain the sum of alphas to be 1. Given this, the softmax function is a good candidate for defining alphas. But since we don't know what's the exact function that governs this dynamic, we can let it be learnt! Therefore, we can write :
+
+![alt text](https://raw.githubusercontent.com/sarangzambare/nmt_attention/master/png/attention_def.png)
 
 
 
