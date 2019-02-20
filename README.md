@@ -40,6 +40,10 @@ Intuitively, the importance that the t-th output should give to the t'-th input 
 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/nmt_attention/master/png/attention_def.png)
 
+Where the vectors ***e*** are some representations of the input nodes and previous hidden states of the attention layer. Since we don't know what these representations look like, we can let them be learnt by constructing a small feedforward neural network which takes as input the activations of the input layer and previous hidden state, and outputs the vectors ***e***
+
+
+![alt text](https://raw.githubusercontent.com/sarangzambare/nmt_attention/master/png/mini_nn.png)
 
 
 
