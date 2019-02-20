@@ -28,7 +28,7 @@ Humans do it much more efficiently by focusing only parts of sentences, to trans
 
 ## Attention models
 
-Attention models (due to [Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio](https://arxiv.org/abs/1409.0473)) work by stacking up one more layer of RNNs (LSTM/GRU) over the input layer, the so called "attention layer". The number of times this RNN is unrolled is equal to the number of output units (in this case, the number of words in the translated text). Each unit in this layer is connected to all the units of the input layer, and receives a "context" variable denoted by ***C***.
+Attention models (due to [Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio](https://arxiv.org/abs/1409.0473)) work by stacking up one more layer of RNNs (LSTM/GRU) over the input layer, the so called "attention layer". The number of times this RNN is unrolled is equal to the number of output units (in this case, the number of words in the translated text). Each unit in this layer is connected to all the units of the input layer, and receives a "context" variable denoted by ***C***. In the figure below, the input layer is a **Bi-directional LSTM**. Simple uni-directional LSTMs can also be used but to capture connections amongst words better, B-RNNs are recommended, but they come at an increased computational cost.
 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/nmt_attention/master/png/attention.png)
 
@@ -50,6 +50,16 @@ Where the vectors ***e*** are some representations of the input nodes and previo
 With this architecture, the network learns the alpha matrix, and learns to focus on the right words while translating.
 
 
+## Demonstration : English to French translation, with attention.
+
+To demonstrate neural machine translation, I worked with the task of language translation.
+
+I used the [briefings of the Europian Parliament](http://www.statmt.org/europarl/), which consists of more than **200,000** sentences in parallel text format with parallel texts for French and English. I preprocessed the text to :
+
+1. Only keep sentences which are 50 words or longer, and truncate them to 50 words for uniformity
+2. Removed all sentences which contained words not in the GloVe word embeddings
+3. Removed all punctuation marks, including html tags (<>)
+4. Converted everything to lower-case.
 
 
 
