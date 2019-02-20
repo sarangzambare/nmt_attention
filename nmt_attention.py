@@ -10,7 +10,7 @@ import keras.backend as K
 import numpy as np
 from pickle import load
 import random
-from emo_utils import *
+from nmt_utils import *
 get_ipython().magic('matplotlib inline')
 
 
@@ -116,7 +116,7 @@ with open('french_dict.dat', 'r') as f:
 
 french_word_to_id = dict(zip(french_dict,range(len(french_dict))))
 
-#french_id_to_word = dict(zip(range(len(french_dict)),french_dict))
+french_id_to_word = dict(zip(range(len(french_dict)),french_dict))
 
 french_vocab_size = len(french_dict)
 
@@ -251,17 +251,38 @@ model.compile(loss='categorical_crossentropy',optimizer=opt,metrics=['accuracy']
 
 
 
-s0 = np.zeros((10, n_s))
-c0 = np.zeros((10, n_s))
-outputs = list(Y_oh[:10].swapaxes(0,1))
+s0 = np.zeros((10000, n_s))
+c0 = np.zeros((10000, n_s))
+outputs = list(Y_oh[:10000].swapaxes(0,1))
 
 
 
 
-model.fit([X[:10], s0, c0], outputs, epochs=6, batch_size=10)
+model.fit([X[:10000], s0, c0], outputs, epochs=100, batch_size=500)
 
 
-model.save('6_epochs.h5')
+
+
+# preds = model.predict([X[:2],s0,c0])
+#
+# preds = np.array(preds)
+#
+# #preds[:,i,:].shape = (50,42606)
+#
+def preds_to_sen(preds):
+	assert(preds.shape = (50,42606))
+
+	outputs=[]
+	for w in preds:
+		outputs.append(french_id_to_word[np.argmax(w)])
+
+
+	return " ".join(outputs)
+
+
+
+
+
 
 #    prediction = model.predict([source, s0, c0])
 #    prediction = np.argmax(prediction, axis = -1)
