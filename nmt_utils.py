@@ -85,7 +85,7 @@ def predict(X, Y, W, b, word_to_vec_map):
     Y -- labels, containing index of the label emoji, numpy array of shape (m, 1)
 
     Returns:
-    pred -- numpy array of shape (m, 1) with your predictions
+    pred -- numpy array of shape (m, 1) with predictions
     """
     m = X.shape[0]
     pred = np.zeros((m, 1))
