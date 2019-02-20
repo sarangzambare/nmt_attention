@@ -20,6 +20,13 @@ The second part (decoder), outputs this probability conditioned on its previous 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/nmt_attention/master/png/y2.png)
 
 
+When a big document is fed into an encoder-decoder, the encoder takes in the entire document before producing an output. But this is not the way a human would do it. **For example, a translator would not learn an entire English novel, before translating it into French.**
+
+Humans do it much more efficiently by focusing only parts of sentences, to translate. This is the intuition behind **attention models**. Although even this framework takes in the entire body of document, it focuses only on parts of the document during translation. This results in much more accurate translations.
+
+
+
+
 
 
 <common architectures: encoder-decoder>
