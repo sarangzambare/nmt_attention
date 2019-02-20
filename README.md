@@ -24,6 +24,8 @@ When a big document is fed into an encoder-decoder, the encoder takes in the ent
 
 Humans do it much more efficiently by focusing only parts of sentences, to translate. This is the intuition behind **attention models**. Although even this framework takes in the entire body of document, it focuses only on parts of the document during translation. This results in much more accurate translations.
 
+![alt text](https://raw.githubusercontent.com/sarangzambare/nmt_attention/master/png/german.png)
+
 ## Attention models
 
 Attention models (due to [Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio](https://arxiv.org/abs/1409.0473)) work by stacking up one more layer of RNNs (LSTM/GRU) over the input layer, the so called "attention layer". The number of times this RNN is unrolled is equal to the number of output units (in this case, the number of words in the translated text). Each unit in this layer is connected to all the units of the input layer, and receives a "context" variable denoted by ***C***.
@@ -44,6 +46,8 @@ Where the vectors ***e*** are some representations of the input nodes and previo
 
 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/nmt_attention/master/png/mini_nn.png)
+
+With this architecture, the network learns the alpha matrix, and learns to focus on the right words while translating.
 
 
 
