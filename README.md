@@ -24,7 +24,7 @@ When a big document is fed into an encoder-decoder, the encoder takes in the ent
 
 Humans do it much more efficiently by focusing only parts of sentences, to translate. This is the intuition behind **attention models**. Although even this framework takes in the entire body of document, it focuses only on parts of the document during translation. This results in much more accurate translations.
 
-![alt text](https://raw.githubusercontent.com/sarangzambare/nmt_attention/master/png/german.png)
+![alt text](https://raw.githubusercontent.com/sarangzambare/nmt_attention/master/png/german.jpg)
 
 
 
