@@ -205,18 +205,4 @@ As is evident, there are a lot of "de". There were also a lot of "je" and "il". 
 
 1. [Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio: Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/abs/1409.0473)
 2. [Jeffrey Pennington, Richard Socher, and Christopher D. Manning: Global Vectors for word representations](https://nlp.stanford.edu/projects/glove/)
-
-<common architectures: encoder-decoder>
-
-<B-RNN working>
-
-<problem with common architectures>
-
-
-<attention modelling working>
-
-
-<demonstration>
-
-
-<attention matrix>
+3. [Encoder-decoder image credits](https://qiita.com/odashi_t/items/a1be7c4964fbea6a116e)
