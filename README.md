@@ -164,6 +164,18 @@ Non-trainable params: 0
 __________________________________________________________________________________________________
 ```
 
+The above model was trained on 10000 sentences, with a batch size of 500, for 100 epochs.
+
+Note: I had never hoped to achieve good results with such a shallow model. State of the art NMT networks are much deeper and maybe have thousand times more parameters, to accommodate the entire spectrum of words in both the languages. Nonetheless, I tried. I give below some good attempts of my little network to translate english to french.
+
+1.  'there are many countries' => 'de de il de pays'
+```
+X = ['there','are','many','countries']
+X = one_hot_Y(X)
+preds = model.predict([X,s0,c0])
+print(preds_to_sen(preds))
+['de', 'de', 'il', 'de', 'pays']
+```
 
 
 
