@@ -60,6 +60,22 @@ I used the [briefings of the Europian Parliament](http://www.statmt.org/europarl
 2. Removed all sentences which contained words not in the GloVe word embeddings
 3. Removed all punctuation marks, including html tags (<>)
 4. Converted everything to lower-case.
+5. Converted all words into their GloVe embeddings.
+
+
+### What's GloVe ?
+
+GloVe stands for "Global Vectors for word representations" due to [Jeffrey Pennington, Richard Socher, and Christopher D. Manning](https://nlp.stanford.edu/projects/glove/) You cannot feed words directly into the neural network. Conventionally, words were one-hot encoded according to their position in the english dictionary. But this fails to capture inter-word dependence, because the dot product of any two one-hot-encoded word vectors is always zero.
+
+For example:
+
+A program trained on one-hot-encoded word vectors cannot infer analogies like the following :
+
+**King: Queen, Man : ?**
+
+But a program trained on GloVe word vectors will be able to answer it as **Woman** (amongst many other cool things)
+
+Check out references to know how these vectors are constructed.
 
 
 
