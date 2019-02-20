@@ -10,7 +10,6 @@ import keras.backend as K
 import numpy as np
 from pickle import load
 import random
-from nmt_utils import *
 get_ipython().magic('matplotlib inline')
 
 
@@ -25,7 +24,30 @@ get_ipython().magic('matplotlib inline')
 def load_clean_sentences(filename):
 	return load(open(filename, 'rb'))
 
-word_to_index, index_to_word, word_to_vec_map = read_glove_vecs('glove.6B.50d.txt')
+
+def read_glove_vecs(glove_file):
+    with open(glove_file, 'r') as f:
+        words = set()
+        word_to_vec_map = {}
+        for line in f:
+            line = line.strip().split()
+            curr_word = line[0]
+            words.add(curr_word)
+            word_to_vec_map[curr_word] = np.array(line[1:], dtype=np.float64)
+
+        i = 1
+        words_to_index = {}
+        index_to_words = {}
+        for w in sorted(words):
+            words_to_index[w] = i
+            index_to_words[i] = w
+            i = i + 1
+    return words_to_index, index_to_words, word_to_vec_map
+
+def convert_to_one_hot(Y, C):
+    Y = np.eye(C)[Y.reshape(-1)]
+    return Y
+
 
 
 def uniform_sentences(sentences_X,sentences_Y,length=50):
@@ -48,8 +70,6 @@ def uniform_sentences(sentences_X,sentences_Y,length=50):
 
 
 
-
-
 def chuck_nonglove(sentences_X,sentences_Y,word_to_vec_map):
 
 	outputs_X = []
@@ -67,6 +87,7 @@ def chuck_nonglove(sentences_X,sentences_Y,word_to_vec_map):
 			outputs_Y.append(sentences_Y[i])
 
 	return outputs_X, outputs_Y
+
 
 def to_glove_vectors(sentences_X,word_to_vec_map):
     outputs = np.zeros((sentences_X.shape[0],sentences_X.shape[1],50))
@@ -90,16 +111,12 @@ def create_french_dict(french_sentences):
 
 
 
-
+word_to_index, index_to_word, word_to_vec_map = read_glove_vecs('glove.6B.50d.txt')
 X = load_clean_sentences('english_vocab.pkl')
 Y = load_clean_sentences('french_vocab.pkl')
-
 X, Y = uniform_sentences(X,Y)
-
 X, Y = chuck_nonglove(X,Y,word_to_vec_map)
-
 X = to_glove_vectors(np.array(X),word_to_vec_map)
-
 Y = np.array(Y)
 
 #french_dict = create_french_dict(Y)
