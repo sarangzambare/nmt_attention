@@ -168,7 +168,7 @@ The above model was trained on 10000 sentences, with a batch size of 500, for 10
 
 Note: I had never hoped to achieve good results with such a shallow model. State of the art NMT networks are much deeper and maybe have thousand times more parameters, to accommodate the entire spectrum of words in both the languages. Nonetheless, I tried. I give below some good attempts of my little network to translate english to french.
 
-1.  'there are many countries' => 'de de il de pays'
+1.  **'there are many countries' => 'de de il de pays'**
 ```
 X = ['there','are','many','countries']
 X = one_hot_Y(X)
@@ -177,6 +177,28 @@ print(preds_to_sen(preds))
 ['de', 'de', 'il', 'de', 'pays']
 ```
 
+2. **'i like peace' => 'de de je de paix'**
+```
+X = ['i','like','peace']
+X = one_hot_Y(X)
+preds = model.predict([X,s0,c0])
+print(preds_to_sen(preds))
+['de', 'de', 'je', 'de', 'paix']
+```
+
+a really bad attempt:
+
+3. **'i am a man' => 'de de de de'**
+```
+X = ['i','am','a','man']
+X = one_hot_Y(X)
+preds = model.predict([X,s0,c0])
+print(preds_to_sen(preds))
+['de', 'de', 'de', 'de']
+```
+
+
+As is evident, there are a lot of "de". There were also a lot of "je" and "il". Its not surprising because these are just extremely common words in french.
 
 
 ## References
